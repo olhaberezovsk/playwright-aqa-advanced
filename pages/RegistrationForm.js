@@ -16,7 +16,7 @@ export class RegistrationForm {
     }
 
     async openRegistrationForm () {
-        await this.page.goto('https://guest:welcome2qauto@qauto.forstudy.space');
+        await this.page.goto('/');
         await this.page.click('.btn-outline-white');
         await this.page.click('button.btn:nth-child(1)');
     }
