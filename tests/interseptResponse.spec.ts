@@ -9,7 +9,7 @@ test('Intercept /profile response, verify UI', async ({ page, context }) => {
     await page.waitForSelector('.sidebar_btn-group', { timeout: 15000 });
 
     await page.goto('https://qauto.forstudy.space/panel/profile');
-    await page.route('**/api/profile', async (route) => {
+    await page.route('**/api/users/profile', async (route) => {
         const fakeProfile = {
             status: 'ok',
             data: {
@@ -22,10 +22,8 @@ test('Intercept /profile response, verify UI', async ({ page, context }) => {
         await route.fulfill({ json: fakeProfile });
     });
 
-    await context.clearCookies();
-    await page.evaluate(() => localStorage.clear());
-    await page.evaluate(() => sessionStorage.clear());
-    await page.reload({ waitUntil: 'networkidle' }); //при релоуді вилогінює, без нього просто нічого не оновлює
+    await page.reload({ waitUntil: 'networkidle' }); 
+    console.log(await context.cookies())
 
     await expect(page.locator('.profile_name')).toHaveText('Test API');
 });
