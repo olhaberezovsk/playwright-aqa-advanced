@@ -25,6 +25,7 @@ test.describe('Registration Form Validation', () => {
         await page.fill('#signupEmail', 'aqa-test@mailinator.com');
         await page.fill('#signupPassword','Test12345');
         await page.fill('#signupRepeatPassword','Test12345');
+        await page.click('.modal-footer');
 
         await expect(page.locator('.invalid-feedback > p:nth-child(1)')).toBeVisible();
         await expect(page.locator('button.btn:nth-child(1)')).toBeDisabled();
@@ -50,6 +51,7 @@ test.describe('Registration Form Validation', () => {
         await page.fill('#signupEmail', '');
         await page.fill('#signupPassword','');
         await page.fill('#signupRepeatPassword','');
+        await page.click('.modal-footer');
 
         await expect(page.locator('button.btn:nth-child(1)')).toBeDisabled();
     })
@@ -61,6 +63,7 @@ test.describe('Registration Form Validation', () => {
         await page.fill('#signupEmail', 'aqa-test@mailinator.com');
         await page.fill('#signupPassword','Test1');
         await page.fill('#signupRepeatPassword','Test12345');
+        await page.click('.modal-footer');
 
         await expect(page.locator('div.form-group:nth-child(4) > div:nth-child(3)')).toBeVisible();
         await expect(page.locator('button.btn:nth-child(1)')).toBeDisabled();
