@@ -1,0 +1,25 @@
+name: Playwright Tests
+on:
+  push:
+    branches:
+    - git_action_playwright
+  pull_request:
+    branches:
+    - main
+jobs:
+  playwright-run:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.39.0-jammy
+steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright Tests
+        run: npx playwright test
