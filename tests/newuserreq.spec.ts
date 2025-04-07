@@ -37,6 +37,7 @@ test.describe('Registration Form Validation', () => {
         await page.fill('#signupEmail', 'aqa-test@mailinator.com');
         await page.fill('#signupPassword','Test12345');
         await page.fill('#signupRepeatPassword','Test12345');
+        await page.click('.modal-footer');
 
         await expect(page.locator('.invalid-feedback')).toBeVisible();
         await expect(page.locator('button.btn:nth-child(1)')).toBeDisabled();
